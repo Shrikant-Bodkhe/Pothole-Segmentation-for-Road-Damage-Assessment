@@ -31,11 +31,12 @@ video_file = st.sidebar.file_uploader("Upload a Video File", type=["mp4", "avi"]
 # Function to download the selected model
 @st.cache_resource
 def download_model(url):
-    response = requests.get(url)
+    response = requests.get(url, stream=True)
     response.raise_for_status()
     model_file = tempfile.NamedTemporaryFile(delete=False, suffix=".pt")
-    model_file.write(response.content)
-    model_file.close()
+    with open(model_file.name, "wb") as f:
+        for chunk in response.iter_content(chunk_size=8192):
+            f.write(chunk)
     return model_file.name
 
 if selected_model_name and video_file:
@@ -43,7 +44,11 @@ if selected_model_name and video_file:
     model_path = download_model(MODEL_URLS[selected_model_name])
 
     # Load the YOLO model
-    model = YOLO(model_path)
+    try:
+        model = YOLO(model_path)
+    except Exception as e:
+        st.error(f"Failed to load the YOLO model: {e}")
+        st.stop()
 
     # Save the uploaded video to a temporary file
     with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as temp_video_file:
@@ -59,6 +64,8 @@ if selected_model_name and video_file:
 
     def cluster_potholes(centroids):
         """Cluster centroids to count unique potholes using DBSCAN."""
+        if len(centroids) == 0:
+            return 0, []
         clustering = DBSCAN(eps=50, min_samples=1).fit(centroids)
         return len(set(clustering.labels_)), clustering.labels_
 
