@@ -7,24 +7,41 @@ import pandas as pd
 import numpy as np
 from sklearn.cluster import DBSCAN
 import moviepy.editor as mp
+import requests
 
 st.set_page_config(page_title="🚧 Pothole Detection System", layout="centered")
 st.title("🚧 Pothole Detection System")
 
-# Sidebar for uploading files and additional information
+# Sidebar for selecting model and uploading files
 st.sidebar.title("📁 File Uploads")
-st.sidebar.write("Please upload the YOLO model weights and the video file to start processing.")
+st.sidebar.write("Select the YOLO model weights and upload a video file.")
 
-# File uploaders in the sidebar
-model_file = st.sidebar.file_uploader("Upload YOLO Model Weights (.pt)", type=["pt"])
+# Predefined model options (hosted on GitHub)
+MODEL_URLS = {
+    "Model 1 (General Detection)": "https://raw.githubusercontent.com/your-username/your-repo/main/model1.pt",
+    "Model 2 (High Precision)": "https://raw.githubusercontent.com/your-username/your-repo/main/model2.pt",
+    "Model 3 (Fast Detection)": "https://raw.githubusercontent.com/your-username/your-repo/main/model3.pt",
+}
+
+# Dropdown menu for selecting a model
+selected_model_name = st.sidebar.selectbox("Select YOLO Model", list(MODEL_URLS.keys()))
+
+# Video file uploader
 video_file = st.sidebar.file_uploader("Upload a Video File", type=["mp4", "avi"])
 
-# Check if both model and video files are uploaded
-if model_file and video_file:
-    # Save the model weights to a temporary file
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".pt") as temp_model_file:
-        temp_model_file.write(model_file.read())
-        model_path = temp_model_file.name
+# Function to download the selected model
+@st.cache_resource
+def download_model(url):
+    response = requests.get(url)
+    response.raise_for_status()
+    model_file = tempfile.NamedTemporaryFile(delete=False, suffix=".pt")
+    model_file.write(response.content)
+    model_file.close()
+    return model_file.name
+
+if selected_model_name and video_file:
+    # Download the selected model
+    model_path = download_model(MODEL_URLS[selected_model_name])
 
     # Load the YOLO model
     model = YOLO(model_path)
@@ -46,7 +63,7 @@ if model_file and video_file:
         clustering = DBSCAN(eps=50, min_samples=1).fit(centroids)
         return len(set(clustering.labels_)), clustering.labels_
 
-    # Function to process video and count unique potholes dynamically
+    # Function to process video and count unique potholes
     def process_video(video_path):
         cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
@@ -148,4 +165,4 @@ if model_file and video_file:
         )
 
 else:
-    st.info("Please upload both the model weights and a video file to start processing.")
+    st.info("Please select a model and upload a video file to start processing.")
