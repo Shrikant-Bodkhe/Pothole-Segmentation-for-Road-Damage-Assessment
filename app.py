@@ -18,9 +18,9 @@ st.sidebar.write("Select the YOLO model weights and upload a video file.")
 
 # Predefined model options (hosted on GitHub)
 MODEL_URLS = {
-    "Model 1 (General Detection)": "https://raw.githubusercontent.com/your-username/your-repo/main/best.onnx",
-    "Model 2 (High Precision)": "https://raw.githubusercontent.com/your-username/your-repo/main/best.pt",
-    "Model 3 (Fast Detection)": "https://raw.githubusercontent.com/your-username/your-repo/main/last.pt",
+    "Model 1 (General Detection)": "https://github.com/Shrikant-Bodkhe/Pothole-Segmentation-for-Road-Damage-Assessment/blob/main/best.onnx",
+    "Model 2 (High Precision)": "https://github.com/Shrikant-Bodkhe/Pothole-Segmentation-for-Road-Damage-Assessment/blob/main/best.pt",
+    "Model 3 (Fast Detection)": "https://github.com/Shrikant-Bodkhe/Pothole-Segmentation-for-Road-Damage-Assessment/blob/main/last.pt",
 }
 
 # Dropdown menu for selecting a model
