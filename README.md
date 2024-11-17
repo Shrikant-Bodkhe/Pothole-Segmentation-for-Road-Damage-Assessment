@@ -4,6 +4,27 @@
 
 This project aims to develop a pothole detection system using computer vision techniques, specifically leveraging the YOLO (You Only Look Once) model for segmentation. The goal is to identify potholes in dashcam footage and assess the road damage efficiently, which can aid in road maintenance and safety.
 
+# Dataset Information
+Pothole Image Segmentation Dataset
+The Pothole Image Segmentation Dataset is a computer vision dataset aimed at detecting and segmenting potholes for road safety and maintenance. It contains annotated images with high-resolution data for developing robust models to detect potholes in various scenarios.
+
+Dataset Details:
+Source: https://www.kaggle.com/datasets/farzadnekouei/pothole-image-segmentation-dataset/data
+Number of Images: 780 images
+Format: YOLOv8 annotations
+*Pre-processing Applied:*
+Auto-orientation of pixel data (with EXIF-orientation stripping)
+Resized to 640x640 pixels
+*Augmentation Techniques (applied exclusively to the training data):*
+50% probability of horizontal flip
+Random cropping (0 to 20% of the image)
+Random rotation between -15 and +15 degrees
+Random shearing (up to 5° horizontally and vertically)
+Random brightness and exposure adjustment (up to ±25%)
+*Dataset Split:*
+Training Set: 720 images
+Validation Set: 60 images
+
 ## Project Overview
 
 This project focuses on pothole detection in videos captured by dashcams. By employing deep learning algorithms like YOLO for object detection and segmentation, the system identifies potholes and provides insights for road damage assessment. The model is designed to run offline using Python and Spyder IDE.
