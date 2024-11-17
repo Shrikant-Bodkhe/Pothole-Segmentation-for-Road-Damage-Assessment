@@ -11,7 +11,7 @@ This project aims to develop a pothole detection system using computer vision te
 The **Pothole Image Segmentation Dataset** is a computer vision dataset aimed at detecting and segmenting potholes for road safety and maintenance. It contains annotated images with high-resolution data for developing robust models to detect potholes in various scenarios.
 
 #### Dataset Details:
-- **Source**: This dataset was sourced from [Roboflow.com](https://www.kaggle.com/datasets/farzadnekouei/pothole-image-segmentation-dataset/data).
+- **Source**: https://www.kaggle.com/datasets/farzadnekouei/pothole-image-segmentation-dataset/data
 - **Number of Images**: 780 images
 - **Format**: YOLOv8 annotations
 
