@@ -57,6 +57,7 @@ This project focuses on pothole detection in videos captured by dashcams. By emp
     The GUI will display the identified potholes on the video, and you can view the damage assessment in real-time.
 
 ## Model Training
+# Use pothole_segmentation_for_road_damage_assessment.ipynb for training
 
 1. **Prepare the dataset**: 
     - Gather dashcam footage with labeled potholes.
