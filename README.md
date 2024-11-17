@@ -4,15 +4,6 @@
 
 This project aims to develop a pothole detection system using computer vision techniques, specifically leveraging the YOLO (You Only Look Once) model for segmentation. The goal is to identify potholes in dashcam footage and assess the road damage efficiently, which can aid in road maintenance and safety.
 
-## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Technologies Used](#technologies-used)
-- [Installation Instructions](#installation-instructions)
-- [Usage](#usage)
-- [Model Training](#model-training)
-- [Contributing](#contributing)
-
 ## Project Overview
 
 This project focuses on pothole detection in videos captured by dashcams. By employing deep learning algorithms like YOLO for object detection and segmentation, the system identifies potholes and provides insights for road damage assessment. The model is designed to run offline using Python and Spyder IDE.
@@ -81,7 +72,5 @@ This project focuses on pothole detection in videos captured by dashcams. By emp
     After training, save the model weights and configurations in the `runs/` folder.
 
 ## Contributing
-
-Feel free to fork this repository, contribute improvements, and create pull requests. If you find any bugs or issues, open an issue in the repository.
-
+Shrikant Bhaginath Bodkhe
 
