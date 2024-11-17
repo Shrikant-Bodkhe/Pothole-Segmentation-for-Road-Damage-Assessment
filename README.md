@@ -84,6 +84,4 @@ This project focuses on pothole detection in videos captured by dashcams. By emp
 
 Feel free to fork this repository, contribute improvements, and create pull requests. If you find any bugs or issues, open an issue in the repository.
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
