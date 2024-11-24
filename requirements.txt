@@ -1,5 +1,5 @@
+moviepy
 streamlit
-
 opencv-python-headless
 ultralytics
 pandas
